@@ -7,7 +7,7 @@ public class Perceptron
     Random rand = new Random();
     final double MIN = -1.0;
     final double MAX = 1.0;
-    double lr = 0.1;
+    double lr = 0.01;
 
     public Perceptron()
     {
@@ -40,8 +40,9 @@ public class Perceptron
     }
 
     // method trains the perceptron by guessing the output then correcting the weights
-    public void train(double inputs[], int target)
+    public void train(double inputs[], int target, int epochs)
     {
+      for( int j = 0; j<epochs; j++){
         // gets a sum by the summation of the inputs times the weights
         double sum = 0;
         for (int i = 0; i < inputs.length; i++)
@@ -53,7 +54,8 @@ public class Perceptron
         // if guess doesnt match the output, the weights are corrected
         if (target != output)
             for (int i = 0; i < this.weights.length; i++)
-                this.weights[i] += (target - output) * lr;
+                this.weights[i] += (target - output) * lr * inputs[i];
+      }
         
     }
 }
