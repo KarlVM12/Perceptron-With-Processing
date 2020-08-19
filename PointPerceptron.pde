@@ -26,11 +26,6 @@ public class Perceptron
 
         // output is calculated by activation function
         int output = sign(sum);
-        
-        if (output >= 0.5)
-           output = 1;
-        else
-          output = -1;
 
         return output;
     }
