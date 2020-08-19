@@ -1,13 +1,17 @@
 
 
 Points[] trainingSet = new Points[5];
-Points[] dataSet = new Points[10];
+Points[] dataSet = new Points[50];
 Perceptron brain = new Perceptron();
 
 void setup()
 {
 
   size(480, 480); 
+  for (int i = 0; i < dataSet.length; i++)
+  {
+     dataSet[i] = new Points();
+  }
 
   //line();
 //}
@@ -40,6 +44,9 @@ void setup()
 
 void draw()
 {
+  background(255);
+  line(0, 0, 480, 480);
+  
   int epochs = 10000;
   
   for (int i = 0; i < trainingSet.length; i++)
@@ -49,17 +56,18 @@ void draw()
      brain.train(inputs, trainingSet[i].label, epochs);
      trainingSet[i] = null;
   }
+ 
  /*
   dataSet[0] = new Points(10, 10);// black
   dataSet[1] = new Points(200, 100); // black
   dataSet[2] = new Points(245, 300); // white
   dataSet[3] = new Points(410, 410); // black
-  dataSet[4] = new Points(120, 324); // white 
-   */
+  dataSet[4] = new Points(120, 324); // white
+  */
+   
    
   for (int i = 0; i < dataSet.length; i++)
   {
-     dataSet[i] = new Points();
      double[] inputs_ = {dataSet[i].x, dataSet[i].y, dataSet[i].bias};
      int label = brain.guess(inputs_);
      
