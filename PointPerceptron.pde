@@ -26,6 +26,11 @@ public class Perceptron
 
         // output is calculated by activation function
         int output = sign(sum);
+        
+        if (output >= 0.5)
+           output = 1;
+        else
+          output = -1;
 
         return output;
     }
@@ -33,10 +38,13 @@ public class Perceptron
     // method is the activation function for the perceptron which assign 1 or -1 to the output
     public int sign(double sum)
     {
+      /*
         if (sum > 0)
             return 1;
         else
             return -1;
+           */
+        return (1/(1+Math.exp(-sum))) >= 0.5 ? 1:-1;
     }
 
     // method trains the perceptron by guessing the output then correcting the weights
